@@ -103,7 +103,8 @@ public class SecurityConfig {
                  if(null!= request.getHeader("type")&&request.getHeader("type").equals("jwt")){
                      var jwtAuthenticationProvider = new JwtAuthenticationProvider(jwtDecoder1);
 
-                     return authentication -> jwtAuthenticationProvider.authenticate(authentication);
+                     //return authentication -> jwtAuthenticationProvider.authenticate(authentication);
+                     return  new ProviderManager(jwtAuthenticationProvider);
                  }else {
                 var opaqueTokenAuthenticationProvider = new OpaqueTokenAuthenticationProvider(opaqueTokenIntrospector);
                 return new ProviderManager(opaqueTokenAuthenticationProvider);
